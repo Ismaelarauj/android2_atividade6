@@ -1,7 +1,10 @@
 package com.example.mensagensconsumidor.ui;
 
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,11 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
-
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.OneTimeWorkRequest;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
@@ -25,7 +29,6 @@ import com.example.mensagensconsumidor.worker.NotificacaoWorker;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -102,7 +105,15 @@ public class FavoritasFragment extends Fragment {
                 return;
             }
 
-            long interval = 24 * 60 / freq;
+            // Para testes: agendar notificações com OneTimeWorkRequest (1 segundo de atraso)
+            OneTimeWorkRequest testNotificacaoRequest = new OneTimeWorkRequest.Builder(NotificacaoWorker.class)
+                    .setInitialDelay(1, TimeUnit.SECONDS)
+                    .build();
+            WorkManager.getInstance(requireContext()).enqueue(testNotificacaoRequest);
+            Toast.makeText(requireContext(), "Notificação de teste agendada (1 segundo)", Toast.LENGTH_SHORT).show();
+
+            // Para produção: manter PeriodicWorkRequest com intervalo mínimo de 15 minutos
+            long interval = Math.max(15, 24 * 60 / freq); // Garantir mínimo de 15 minutos
             PeriodicWorkRequest notificacaoRequest = new PeriodicWorkRequest.Builder(
                     NotificacaoWorker.class, interval, TimeUnit.MINUTES, interval / 2, TimeUnit.MINUTES)
                     .build();
