@@ -1,6 +1,7 @@
 package com.example.mensagensconsumidor.ui;
 
 import android.os.Bundle;
+import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -27,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
             NavController navController = navHostFragment.getNavController();
             AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
             NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
+
+            // Adicionar animação de fade-in ao container do fragmento
+            findViewById(R.id.nav_host_fragment).startAnimation(
+                    AnimationUtils.loadAnimation(this, R.anim.fade_in));
         }
     }
 }

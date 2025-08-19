@@ -46,13 +46,14 @@ public class FavoritasFragment extends Fragment {
         btnConfigurarNotificacoes = view.findViewById(R.id.btn_configurar_notificacoes);
         btnCancelarNotificacoes = view.findViewById(R.id.btn_cancelar_notificacoes);
 
-        // Adicionar animação de escala aos botões
-        btnConfigurarNotificacoes.setAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.scale_button));
-        btnCancelarNotificacoes.setAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.scale_button));
+        // Adicionar animações
+        recyclerView.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in));
+        tilFrequencia.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in));
+        btnConfigurarNotificacoes.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.scale_button));
+        btnCancelarNotificacoes.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.scale_button));
 
         mensagens = new ArrayList<>();
         adapter = new MensagemAdapter(mensagens, id -> {
-            // Diálogo de confirmação para desmarcar
             new MaterialAlertDialogBuilder(requireContext())
                     .setTitle("Desmarcar Favorita")
                     .setMessage("Deseja desmarcar esta mensagem como favorita?")
@@ -64,7 +65,7 @@ public class FavoritasFragment extends Fragment {
                                 values, null, null);
                         if (updated > 0) {
                             Toast.makeText(requireContext(), "Mensagem desmarcada como favorita", Toast.LENGTH_SHORT).show();
-                            loadFavoritas(); // Recarregar lista
+                            loadFavoritas();
                         } else {
                             Toast.makeText(requireContext(), "Erro ao desmarcar", Toast.LENGTH_SHORT).show();
                         }
@@ -101,8 +102,7 @@ public class FavoritasFragment extends Fragment {
                 return;
             }
 
-            // Configurar WorkManager
-            long interval = 24 * 60 / freq; // Minutos por dia / freq
+            long interval = 24 * 60 / freq;
             PeriodicWorkRequest notificacaoRequest = new PeriodicWorkRequest.Builder(
                     NotificacaoWorker.class, interval, TimeUnit.MINUTES, interval / 2, TimeUnit.MINUTES)
                     .build();

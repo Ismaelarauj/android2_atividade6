@@ -52,9 +52,10 @@ public class MensagemAleatoriaFragment extends Fragment {
         btnAtualizar = view.findViewById(R.id.btn_atualizar);
         cardMensagem = view.findViewById(R.id.card_mensagem);
 
-        // Adicionar animação de escala aos botões
-        btnListaFavoritas.setAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.scale_button));
-        btnAtualizar.setAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.scale_button));
+        // Adicionar animações
+        cardMensagem.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in));
+        btnListaFavoritas.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.scale_button));
+        btnAtualizar.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.scale_button));
 
         // Solicitar permissão de notificação
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

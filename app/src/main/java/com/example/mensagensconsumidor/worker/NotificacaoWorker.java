@@ -2,7 +2,6 @@ package com.example.mensagensconsumidor.worker;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -19,7 +18,6 @@ import java.util.Random;
 
 public class NotificacaoWorker extends Worker {
     private static final String CHANNEL_ID = "mensagens_favoritas";
-    private static final int NOTIFICATION_ID = 1;
 
     public NotificacaoWorker(@NonNull Context context, @NonNull WorkerParameters params) {
         super(context, params);
@@ -62,20 +60,17 @@ public class NotificacaoWorker extends Worker {
                 String mensagem = cursor.getString(mensagemIndex);
                 String autor = cursor.getString(autorIndex);
 
-                RemoteViews contentView = new RemoteViews(getApplicationContext().getPackageName(), R.layout.notification_custom);
-                contentView.setTextViewText(R.id.notification_title, "Mensagem Favorita");
-                contentView.setTextViewText(R.id.notification_text, mensagem);
-                contentView.setTextViewText(R.id.notification_autor, "Por: " + autor);
-
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                         .setSmallIcon(R.drawable.ic_notification)
-                        .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                        .setCustomContentView(contentView)
+                        .setContentTitle("Mensagem Favorita")
+                        .setContentText(mensagem)
+                        .setStyle(new NotificationCompat.BigTextStyle().bigText(mensagem + "\nPor: " + autor))
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setAutoCancel(true);
 
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
                 if (androidx.core.content.ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.POST_NOTIFICATIONS) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
-                    notificationManager.notify(NOTIFICATION_ID, builder.build());
+                    notificationManager.notify(random.nextInt(1000), builder.build());
                 }
 
                 cursor.close();

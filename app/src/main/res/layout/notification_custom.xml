@@ -1,27 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    style="@style/Base.TextAppearance.AppCompat">
+    android:background="@color/card_background">
 
     <TextView
         android:id="@+id/notification_title"
+        style="@style/TextAppearance.App.Headline6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        style="@style/TextAppearance.Compat.Notification.Title" />
+        android:text="Mensagem Favorita"
+        android:textColor="@color/primary"
+        android:paddingBottom="4dp"
+        android:contentDescription="Título da notificação"
+        tools:text="Mensagem Favorita" />
 
     <TextView
         android:id="@+id/notification_text"
+        style="@style/TextAppearance.App.Body1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/TextAppearance.Compat.Notification.Line2" />
+        android:paddingBottom="8dp"
+        android:contentDescription="Texto da mensagem da notificação"
+        tools:text="Esta é uma mensagem de exemplo para a notificação." />
 
-    <TextView
-        android:id="@+id/notification_autor"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="italic" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_star"
+            app:tint="@color/accent"
+            android:contentDescription="Ícone de favorita"
+            tools:ignore="ImageViewTint" />
+
+        <TextView
+            android:id="@+id/notification_autor"
+            style="@style/TextAppearance.App.Body1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="italic"
+            android:contentDescription="Autor da mensagem da notificação"
+            tools:text="Autor Desconhecido" />
+    </LinearLayout>
 </LinearLayout>

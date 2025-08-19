@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="primary">#3F51B5</color>
-    <color name="secondary">#FF5722</color>
-    <color name="background">#F5F5F5</color>
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-
+    <color name="background">#F5F6F5</color> <!-- Fundo suave, quase branco -->
+    <color name="primary">#4A90E2</color> <!-- Azul claro para elementos principais -->
+    <color name="primary_variant">#357ABD</color> <!-- Azul mais escuro para gradientes -->
+    <color name="secondary">#26A69A</color> <!-- Verde-água para botões secundários -->
+    <color name="secondary_variant">#1A746B</color> <!-- Verde-água escuro -->
+    <color name="text_primary">#212121</color> <!-- Texto escuro para alto contraste -->
+    <color name="text_secondary">#757575</color> <!-- Texto secundário mais claro -->
+    <color name="card_background">#FFFFFF</color> <!-- Fundo dos cards -->
+    <color name="accent">#F4C430</color> <!-- Amarelo suave para ícones de favorita -->
 </resources>

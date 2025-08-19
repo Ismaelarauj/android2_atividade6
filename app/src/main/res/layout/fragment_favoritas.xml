@@ -4,51 +4,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:animateLayoutChanges="true">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_favoritas"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="Lista de mensagens favoritas"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/til_frequencia" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_frequencia"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Frequência por dia (1-10)"
-        app:layout_constraintBottom_toTopOf="@id/btn_configurar_notificacoes"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:minHeight="56dp"
+        android:hint="Frequência de notificações por dia (1-10)"
+        android:contentDescription="Campo para definir frequência de notificações"
+        app:boxStrokeColor="@color/primary"
+        app:hintTextColor="@color/primary"
+        app:layout_constraintBottom_toTopOf="@id/button_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:padding="12dp"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_configurar_notificacoes"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Configurar Notificações"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@id/btn_cancelar_notificacoes"
-        app:layout_constraintStart_toStartOf="parent"
-        app:backgroundTint="@color/primary" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_cancelar_notificacoes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancelar Notificações"
-        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:backgroundTint="@color/secondary" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_configurar_notificacoes"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:layout_marginEnd="8dp"
+            android:text="Configurar Notificações"
+            android:contentDescription="Configurar notificações de mensagens favoritas"
+            app:backgroundTint="@color/primary"
+            app:cornerRadius="8dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancelar_notificacoes"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:text="Cancelar Notificações"
+            android:contentDescription="Cancelar notificações de mensagens favoritas"
+            app:strokeColor="@color/secondary"
+            app:cornerRadius="8dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
