@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mensagemAleatoriaFragment">
+
+    <fragment
+        android:id="@+id/mensagemAleatoriaFragment"
+        android:name="com.example.mensagensconsumidor.ui.MensagemAleatoriaFragment"
+        android:label="@string/mensagem_aleatoria_title">
+        <action
+            android:id="@+id/action_mensagemAleatoria_to_favoritas"
+            app:destination="@id/favoritasFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoritasFragment"
+        android:name="com.example.mensagensconsumidor.ui.FavoritasFragment"
+        android:label="@string/favoritas_title" />
+</navigation>

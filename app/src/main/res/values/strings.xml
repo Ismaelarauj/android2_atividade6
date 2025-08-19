@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mensagens Consumidor</string>
+    <string name="mensagem_aleatoria_title">Mensagem do Dia</string>
+    <string name="favoritas_title">Mensagens Favoritas</string>
+</resources>
